@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h1>Pagina principal para {{ user.get_full_name }}</h1>
+
+{% else %}
+
+
+<div class='col-md-6 offset-md-3'>
+    <h1>Identificarse</h1>
+    <br/>
+    <form method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+          <input type="text" class="form-control" name="usuario" placeholder="Usuario" required>
+        </div>
+        <div class="mb-3">
+          <input type="password" class="form-control" name="password" placeholder="Password" required>
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-primary">Iniciar sesion</button>
+      </form>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
