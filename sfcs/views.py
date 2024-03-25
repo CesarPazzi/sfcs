@@ -76,7 +76,7 @@ def inventarios_agregar_registro(request):
             if form.is_valid():
                 agregar_registro = form.save()
                 messages.success(request, "Registro agregado correctamente!")
-                return redirect('registros')
+                return redirect('inventarios_registros')
         return render(request, 'inventarios/agregar_registro.html', {'form': form})
     else:
         messages.error(request, "Debes de iniciar sesion!")

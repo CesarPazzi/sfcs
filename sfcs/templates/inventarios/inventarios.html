@@ -3,12 +3,13 @@
 
 {% if user.is_authenticated %}
 
-<h1>Inventarios</h1>
+<h1>Productos terminados</h1>
 
 <!-- TABLA -->
-<a href="{% url 'inventarios_registros' %}">Ver Todos Los Registros</a><br/>
-<a href="#">Buscar Registro</a><br/>
-<a href="{% url 'inventarios_agregar_registro' %}">Capturar Registro</a><br/>
+<a href="{% url 'inventarios_registros' %}">Ver Todos Los productos terminados</a><br/>
+<a href="#">Buscar producto</a><br/>
+<a href="{% url 'inventarios_agregar_registro' %}">Capturar nuevo producto</a><br/>
+
 
 <!-- TABLA -->
 <!-- SI EL USUARIO NO ESTA LOGGEADO -->

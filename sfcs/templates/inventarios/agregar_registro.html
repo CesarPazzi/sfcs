@@ -3,16 +3,19 @@
 
 {% if user.is_authenticated %}
 
-<h1>Agregar Registro</h1>
+<h1>Capturar Nuevo Producto</h1>
 
 <form method="POST" action="{% url 'inventarios_agregar_registro' %}">
   {% csrf_token %}
 
   {{ form.as_p }}
   <a href="javascript:history.back()" class="btn btn-primary">Regresar</a>
-  <button type="submit" class="btn btn-success">Agregar Registro</button>
+  <button type="submit" class="btn btn-success">Agregar Producto</button>
       </form>
 
 {% endif %}
 
 {% endblock %}
+
+
+
