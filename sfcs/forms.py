@@ -14,4 +14,4 @@ class AddRecordForm(forms.ModelForm):
 
     class Meta:
         model = Almacen
-        exclude = ("user", )
+        exclude = ("user",)

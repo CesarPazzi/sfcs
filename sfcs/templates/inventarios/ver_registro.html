@@ -38,6 +38,9 @@
 
   </tbody>
 </table>
+<br/>
+<a href="javascript:history.back()" class="btn btn-primary">Regresar</a> <a href="#" onclick="if(confirm('Realmente quiere borrar el registro?')){window.location.href='{% url 'inventarios_borrar_registro' registro.id %}'}else{return false;}" class="btn btn-danger">Borrar</a>
+
 {% endif %}
 
 <!-- TABLA -->

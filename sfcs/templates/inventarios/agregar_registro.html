@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h1>Agregar Registro</h1>
+
+<form method="POST" action="{% url 'inventarios_agregar_registro' %}">
+  {% csrf_token %}
+
+  {{ form.as_p }}
+  <a href="javascript:history.back()" class="btn btn-primary">Regresar</a>
+  <button type="submit" class="btn btn-success">Agregar Registro</button>
+      </form>
+
+{% endif %}
+
+{% endblock %}

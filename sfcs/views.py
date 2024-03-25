@@ -34,37 +34,54 @@ def logout_user(request):
     messages.warning(request, "Haz cerrado sesion!")
     return redirect('home')
 
-def capturar(request):
-    return redirect('home')
-    # if request.method == "POST":
-    #     inv_codigo = request.POST['codigo']
-    #     inv_medida = request.POST['medida']
-    #     inv_clase = request.POST['clase']
-    #     inv_unidad = request.POST['unidad']
-    #     inv_descripcion = request.POST['descripcion']
-    #     inv_valor = request.POST['valor']
-    #     inv_listamedidas = request.POST['listamedidas']
-
-
-
-    # mensaje_success = ("haz iniciado sesion correctamente!")
-    # messages.success(request, mensaje_success)
-    # print ("usuario loggeado")
-
-    # return render(request, 'capturar.html')
-
-
-
-def registros(request):
-    registros = Almacen.objects.all()
-    return render(request, 'registro.html', {'registros': registros})
-
-def ver_registro(request, pk):
+# VER TODOS LOS REGISTROS
+def inventarios_registros(request):
     if request.user.is_authenticated:
-        #Ver registro
+        registros = Almacen.objects.all()
+    else:
+        messages.error(request, "Debes de iniciar sesion!")
+        print ("no ha iniciado sesion para ver esa pagina")
+        return redirect('home')
+    return render(request, 'inventarios/registro.html', {'registros': registros})
+
+
+# VER REGISTRO INDIVIDUAL
+def inventarios_ver_registro(request, pk):
+    if request.user.is_authenticated:
         registro = Almacen.objects.get(id=pk)
     else:
         messages.error(request, "Debes de iniciar sesion!")
         print ("no ha iniciado sesion para ver esa pagina")
         return redirect('home')
-    return render(request, 'ver_registro.html', {'registro': registro})
+    return render(request, 'inventarios/ver_registro.html', {'registro': registro})
+
+# BORRAR REGISTRO
+def inventarios_borrar_registro(request, pk):
+    if request.user.is_authenticated:
+        registro = Almacen.objects.get(id=pk)
+        registro.delete()
+        messages.error(request, "Registro eliminado correctamente!")
+        print ("registro borrado")
+        return redirect('inventarios_registros')
+    else:
+        messages.error(request, "Debes de iniciar sesion!")
+        print ("no ha iniciado sesion para ver esa pagina")
+        return redirect('home')
+
+# CAPTURAR REGISTRO
+def inventarios_agregar_registro(request):
+    form = AddRecordForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            if form.is_valid():
+                agregar_registro = form.save()
+                messages.success(request, "Registro agregado correctamente!")
+                return redirect('registros')
+        return render(request, 'inventarios/agregar_registro.html', {'form': form})
+    else:
+        messages.error(request, "Debes de iniciar sesion!")
+        print ("no se ha iniciado sesion para ver esa pagina")
+        return redirect('home')
+    
+def inventarios_home(request):
+    return render(request, 'inventarios/inventarios.html', {})

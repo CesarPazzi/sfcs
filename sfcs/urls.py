@@ -9,7 +9,9 @@ urlpatterns = [
     # path('login/', views.login_user, name='login'),
     path('logout/', views.logout_user, name='logout'),
 
-    path('capturar/', views.capturar, name='capturar'),
-    path('registros/', views.registros, name='registro'),
-    path('registro/<int:pk>', views.ver_registro, name='registro')
+    path('inventarios/agregar_registro/', views.inventarios_agregar_registro, name='inventarios_agregar_registro'),
+    path('inventarios/registros/', views.inventarios_registros, name='inventarios_registros'),
+    path('inventarios/registros/<int:pk>', views.inventarios_ver_registro, name='inventarios_registro'),
+    path('inventarios/borrar_registro/<int:pk>', views.inventarios_borrar_registro, name='inventarios_borrar_registro'),
+    path('inventarios/', views.inventarios_home, name='inventarios'),
 ]
