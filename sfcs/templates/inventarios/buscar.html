@@ -13,9 +13,23 @@
   </ol>
 </nav>
 
-{% csrf_token %}
+<form class="d-flex" role="search" method="POST">
+  {% csrf_token %}
+  <input
+     class="form-control me-2"
+     type="search"
+     placeholder="Search"
+     name="search_query"
+     required aria-label="Search"
+  >
+  <button class="btn btn-outline-success" type="submit">Search</button>
+ </form>
+ <br/>
+ 
+ {% if search_query %}
+ <h2>Resultados para: {{ search_query }}</h2>
+ {% endif %}
 
-{{ form.as_p }}
 
 <br/>
 <a href="{% url 'inventarios' %}" class="btn btn-primary">Regresar</a>

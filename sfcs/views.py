@@ -102,11 +102,9 @@ def inventarios_editar_registro(request, pk):
         return redirect('home')
     
 def inventarios_buscar_registro(request):
-    if request.user.is_authenticated:
-        form = AddRecordForm(request.POST or None)
-        if form.is_valid():
-            pass
-        return render(request, 'inventarios/buscar.html', {})
+    if request.method == 'POST':
+        search_query = request.POST['search_query']
+        posts = Almacen.objects.filter(descripcion__contains=search_query)
+        return render(request, 'inventarios/buscar.html', {'search_query':search_query, 'posts':posts})
     else:
-        # Si el usuario no esta autenticado
-        pass
+        return render(request, 'inventarios/buscar.html',{})
