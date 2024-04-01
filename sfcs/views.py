@@ -104,9 +104,9 @@ def inventarios_editar_registro(request, pk):
 def inventarios_buscar_registro(request):
     if request.method == 'POST':
             # Retrieve the search query entered by the user
-            search_query = request.POST['search_query']
+            busqueda = request.POST['busqueda']
             # Filter your model by the search query
-            posts = Almacen.objects.filter(descripcion__contains=search_query)
-            return render(request, 'inventarios/buscar.html', {'search_query':search_query, 'posts':posts})
+            resultados = Almacen.objects.filter(descripcion__contains=busqueda)
+            return render(request, 'inventarios/buscar.html', {'busqueda':busqueda, 'resultados':resultados})
     else:
         return render(request, 'inventarios/buscar.html',{})
