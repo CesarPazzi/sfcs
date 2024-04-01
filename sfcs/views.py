@@ -100,3 +100,13 @@ def inventarios_editar_registro(request, pk):
         messages.error(request, "Debes de iniciar sesion!")
         print ("no ha iniciado sesion para ver esa pagina")
         return redirect('home')
+    
+def inventarios_buscar_registro(request):
+    if request.user.is_authenticated:
+        form = AddRecordForm(request.POST or None)
+        if form.is_valid():
+            pass
+        return render(request, 'inventarios/buscar.html', {})
+    else:
+        # Si el usuario no esta autenticado
+        pass
