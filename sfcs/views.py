@@ -85,3 +85,18 @@ def inventarios_agregar_registro(request):
     
 def inventarios_home(request):
     return render(request, 'inventarios/inventarios.html', {})
+
+# EDITAR REGISTRO
+def inventarios_editar_registro(request, pk):
+    if request.user.is_authenticated:
+        registro = Almacen.objects.get(id=pk)
+        form = AddRecordForm(request.POST or None, instance=registro)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Registro editado correctamente!")
+            return redirect('../%d' % registro.id)
+        return render(request, 'inventarios/editar_registro.html', {'form':form, 'registro': registro})
+    else:
+        messages.error(request, "Debes de iniciar sesion!")
+        print ("no ha iniciado sesion para ver esa pagina")
+        return redirect('home')

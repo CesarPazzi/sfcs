@@ -5,8 +5,13 @@
 
 <h1>Viendo Todos Los Registros</h1>
 <br/>
-<a href="javascript:history.back()" class="btn btn-primary">Regresar</a>
-<br/><br/>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home' %}"">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'inventarios' %}">Productos Terminados</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Todos Los Registros</li>
+  </ol>
+</nav>
 <!-- TABLA -->
 {% if registros %}
 <table class="table table-striped table-hover">
@@ -41,7 +46,7 @@
 </table>
 {% endif %}
 <br/>
-<a href="javascript:history.back()" class="btn btn-primary">Regresar</a>
+<a href="{% url 'inventarios' %}" class="btn btn-primary">Regresar</a>
 <br/>
 <!-- TABLA -->
 <!-- SI EL USUARIO NO ESTA LOGGEADO -->
