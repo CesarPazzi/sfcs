@@ -103,10 +103,10 @@ def inventarios_editar_registro(request, pk):
     
 def inventarios_buscar_registro(request):
     if request.method == 'POST':
-            # Retrieve the search query entered by the user
             busqueda = request.POST['busqueda']
-            # Filter your model by the search query
-            resultados = Almacen.objects.filter(descripcion__contains=busqueda)
+            # busqueda exacta de la busqueda de la descripcion del registro en el modelo
+            # https://docs.djangoproject.com/en/4.0/ref/models/querysets/#std-fieldlookup-exact
+            resultados = Almacen.objects.filter(descripcion__exact=busqueda)
             return render(request, 'inventarios/buscar.html', {'busqueda':busqueda, 'resultados':resultados})
     else:
         return render(request, 'inventarios/buscar.html',{})
