@@ -5,7 +5,7 @@
 
 <h1>Capturar Nuevo Producto</h1>
 
-<form method="POST" action="{% url 'inventarios_agregar_registro' %}">
+<form method="POST" action="{% url 'productos_terminados_agregar_registro' %}">
   {% csrf_token %}
 
   {{ form.as_p }}

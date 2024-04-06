@@ -12,13 +12,13 @@
   </ol>
 </nav>
 
-<!-- TABLA -->
-<a href="{% url 'inventarios_registros' %}">Ver Todos Los productos terminados</a><br/>
-<a href="{% url 'inventarios_buscar_registro' %}">Buscar producto</a><br/>
-<a href="{% url 'inventarios_agregar_registro' %}">Capturar nuevo producto</a><br/>
+
+<a href="{% url 'productos_terminados_registros' %}">Ver Todos Los productos terminados</a><br/>
+<a href="{% url 'productos_terminados_buscar_registro' %}">Buscar producto</a><br/>
+<a href="{% url 'productos_terminados_agregar_registro' %}">Capturar nuevo producto</a><br/>
 
 
-<!-- TABLA -->
+
 <!-- SI EL USUARIO NO ESTA LOGGEADO -->
 {% else %}
 <div class='col-md-6 offset-md-3'>
