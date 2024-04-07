@@ -30,8 +30,7 @@
 {% if busqueda %}
   <h2>Resultados para: {{ busqueda }}</h2>
 
-  <a href = "{% url 'productos_terminados_descargar_resultados' %}"><img width="16px" src="{% static 'xlsx_icon.svg' %}"></img></a>
-  <img src="{% static 'productos_terminados/xlsx_icon.svg' %}" alt="My image">
+  Exportar a: <a href = "{% url 'productos_terminados_descargar_resultados' %}"><img width="24px" src="{% static 'xlsx_icon.svg' %}" title="Exportar a Excel"></img></a>
     {% if resultados %}
 
       
