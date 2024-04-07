@@ -1,4 +1,5 @@
 from django.db import models
+from django_pandas.managers import DataFrameManager
 
 # Create your models here.
 
@@ -11,6 +12,8 @@ class Almacen(models.Model):
     descripcion = models.CharField(max_length=150)
     valor = models.FloatField(max_length=15)
     lista_medidas = models.CharField(max_length=100)
+
+    objects = DataFrameManager()
 
     def __str__(self):
         return(f'{self.creado_en} {self.descripcion}')

@@ -3,6 +3,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Almacen
 from .forms import AddRecordForm
+from django_pandas.managers import DataFrameManager
+from django.http import HttpResponse
+from io import BytesIO as IO
 
 # Create your views here.
 
@@ -102,11 +105,22 @@ def productos_terminados_editar_registro(request, pk):
         return redirect('home')
     
 def productos_terminados_buscar_registro(request):
+    # https://docs.djangoproject.com/en/4.0/ref/models/querysets/#std-fieldlookup-exact
     if request.method == 'POST':
             busqueda = request.POST['busqueda']
-            # busqueda exacta de la busqueda de la descripcion del registro en el modelo
-            # https://docs.djangoproject.com/en/4.0/ref/models/querysets/#std-fieldlookup-exact
+            request.session['busqueda'] = busqueda
             resultados = Almacen.objects.filter(descripcion__contains=busqueda)
             return render(request, 'productos_terminados/buscar.html', {'busqueda':busqueda, 'resultados':resultados})
     else:
         return render(request, 'productos_terminados/buscar.html',{})
+    
+def productos_terminados_descargar_resultados(request):
+    if request.method != 'GET':
+        return render(request, 'productos_terminados/buscar.html',{})
+    busqueda = request.session['busqueda']
+    resultados = Almacen.objects.filter(descripcion__contains=busqueda)
+    df = resultados.to_dataframe()
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = f'attachment; filename=data.xlsx'
+    data = df.to_excel(response, index=False)
+    return response

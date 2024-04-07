@@ -16,4 +16,5 @@ urlpatterns = [
     path('productos_terminados/', views.productos_terminados_home, name='productos_terminados'),
     path('productos_terminados/registros/<int:pk>/editar', views.productos_terminados_editar_registro, name='productos_terminados_editar_registro'),
     path('productos_terminados/buscar/', views.productos_terminados_buscar_registro, name='productos_terminados_buscar_registro'),
+    path('productos_terminados/buscar/descargar_resultados', views.productos_terminados_descargar_resultados, name='productos_terminados_descargar_resultados'),
 ]

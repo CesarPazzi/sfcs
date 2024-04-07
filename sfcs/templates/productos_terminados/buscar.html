@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
 {% if user.is_authenticated %}
 
@@ -28,7 +29,11 @@
  
 {% if busqueda %}
   <h2>Resultados para: {{ busqueda }}</h2>
+
+  <a href = "{% url 'productos_terminados_descargar_resultados' %}"><img width="16px" src="{% static 'xlsx_icon.svg' %}"></img></a>
+  <img src="{% static 'productos_terminados/xlsx_icon.svg' %}" alt="My image">
     {% if resultados %}
+
       
         <table class="table table-striped table-hover">
           <thead>
