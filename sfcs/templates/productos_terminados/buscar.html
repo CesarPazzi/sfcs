@@ -30,8 +30,8 @@
 {% if busqueda %}
   <h2>Resultados para: {{ busqueda }}</h2>
 
+  {% if resultados %}
   Exportar a: <a href = "{% url 'productos_terminados_descargar_resultados' %}"><img width="24px" src="{% static 'xlsx_icon.svg' %}" title="Exportar a Excel"></img></a>
-    {% if resultados %}
 
       
         <table class="table table-striped table-hover">
